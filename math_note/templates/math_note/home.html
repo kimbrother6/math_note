@@ -1,0 +1,17 @@
+{% load static %}
+<meta charset="utf-8">
+<title>오답노트 목록</title>
+<link rel="stylesheet" href="{% static 'math_note/styels.css'%}">
+
+
+<ul>
+  {% for post in model %}
+    <a href="{{post.id}}">
+        <div>
+            <p>{{ post.book }}</p>
+            <h3>{{post.WR}}</h3>
+        </div>
+    </a>
+  {% endfor %}
+  <a href={% url 'new-page'%}>오답노트 쓰러가기</a>
+</ul>
