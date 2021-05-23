@@ -3,4 +3,10 @@
     width: 100px;
     height: 150px;
     text-align: center;
+    text-decoration: none;
+    margin: 0px;
+}
+
+.a {
+    text-decoration: none;
 }
