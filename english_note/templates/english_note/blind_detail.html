@@ -1,0 +1,9 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'english_note/styles.css' %}">
+
+{% for sentenc in sentenc %}
+<a href="/english_note/open/{{sentenc.id}}/">{{sentenc.korean_sentence}}</a>
+{{sentenc.Memorization}}<br>
+{% endfor %}
+<br><br>
+<a href={% url 'home-page' %}>홈으로 돌아가기</a>

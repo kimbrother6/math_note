@@ -23,8 +23,6 @@ def newPage(request):
         image = request.FILES['image']
 
 
-
-
         newPost = Post(
             book = book,
             page = page,
@@ -38,7 +36,6 @@ def newPage(request):
         return redirect('detail-page', id=newPost.id)
     else:
         note_form = PostForm
-
         return render(request, 'math_note/forms.html', {'form': note_form})
 
 def detailPage(request, id):
