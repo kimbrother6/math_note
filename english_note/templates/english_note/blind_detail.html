@@ -1,4 +1,8 @@
+{% extends './base.html'%}
 {% load static %}
+
+
+{% block content %}
 <link rel="stylesheet" href="{% static 'english_note/styles.css' %}">
 
 {% for sentenc in sentenc %}
@@ -7,3 +11,4 @@
 {% endfor %}
 <br><br>
 <a href={% url 'home-page' %}>홈으로 돌아가기</a>
+{% endblock content %}

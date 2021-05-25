@@ -1,13 +1,17 @@
+{% extends './base.html'%}
 {% load static %}
+
+
+{% block content %}
 <meta charset="utf-8">
 <title>오답노트 목록</title>
-<link rel="stylesheet" href="{% static 'math_note/styels.css'%}">
+<link rel="stylesheet" href="{% static 'math_note/styles.css'%}">
 
 
 <ul>
   {% for post in model %}
     <a href="{{post.id}}">
-        <div>
+        <div class='post'>
             <p>{{ post.book }}</p>
             <h3>{{post.WR}}</h3>
         </div>
@@ -15,3 +19,4 @@
   {% endfor %}
   <a href='new/'>오답노트 쓰러가기</a>
 </ul>
+{% endblock content %}

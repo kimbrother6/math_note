@@ -1,3 +1,6 @@
+{% extends './base.html'%}
+
+{% block content %}
 <h1>{{post.book}} p{{post.page}}   #{{post.number}}</h1>
 <h4>
     대단원: {{post.big_unit}}  <br>
@@ -7,3 +10,4 @@
 <img src="{{post.image.url}}"><br>
 
 <a href={% url 'list-page' %}>목록으로 돌아가기</a>
+{% endblock content %}
