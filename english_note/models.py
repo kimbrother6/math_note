@@ -7,3 +7,7 @@ class Sentence(models.Model):
     korean_sentence = models.CharField(max_length=200, null=True, blank=True)
     Memorization = models.CharField(max_length=50, null=True, blank=True)
     Classification = models.CharField(max_length=30, null=True, blank=True)
+
+
+    def __str__(self):
+        return self.english_sentence

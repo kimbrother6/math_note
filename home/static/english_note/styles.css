@@ -1,0 +1,15 @@
+.list {
+    overflow: scroll;
+    width: 250px;
+    height: 350px;
+    margin-left: 20px;
+}
+
+.sentenc {
+    margin-bottom: 5px;
+    background-color: lightblue;
+}
+
+.list-title {
+    margin-left: 20px;
+}

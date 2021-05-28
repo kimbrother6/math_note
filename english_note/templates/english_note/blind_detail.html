@@ -5,10 +5,20 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'english_note/styles.css' %}">
 
-{% for sentenc in sentenc %}
-<a href="/english_note/open/{{sentenc.id}}/">{{sentenc.korean_sentence}}</a>
-{{sentenc.Memorization}}<br>
-{% endfor %}
+
+<h3 class='list-title'>영어A 수행평가</h3>
+
+<div class='list'>
+    {% for sentenc in sentenc %}
+        {% if sentenc.Classification == '영어A 수행평가'%}
+            <div class='sentenc'>
+                <a href="/english_note/open/{{sentenc.id}}/">{{sentenc.korean_sentence}}</a>
+                {{sentenc.Memorization}}<br>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+
+
 <br><br>
-<a href={% url 'home-page' %}>홈으로 돌아가기</a>
 {% endblock content %}
