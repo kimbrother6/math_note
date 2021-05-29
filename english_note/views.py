@@ -3,6 +3,8 @@ from .models import Sentence
 from .forms import englishNoteForm
 from sqlalchemy import create_engine
 import pandas as pd
+
+
 engine = create_engine("sqlite:////Users/cubest_june/hj-django/note/db.sqlite3")
 
 
@@ -13,9 +15,17 @@ def english_note_home_page(request):
 def blind_detail_page(request):
     sentenc = Sentence.objects.all()
 
-    print(type(sentenc))
+    with engine.connect() as conn, conn.begin():
+            data = pd.read_sql_table("english_note_sentence", conn)
+    Classification_list = data['Classification'].unique()
+    
+    context = {
+        'sentenc': sentenc,
+        'Classification_list': Classification_list
+    }
+    print(context)
 
-    return render(request, 'english_note/blind_detail.html', {'sentenc': sentenc})
+    return render(request, 'english_note/blind_detail.html', context=context)
 
 def open_detail_page(request, id):
     sentence = Sentence.objects.get(id=id)
@@ -30,9 +40,7 @@ def new_page(request):
         Memorization = request.POST['Memorization']
         Classification = request.POST['Classification']
 
-        with engine.connect() as conn, conn.begin():
-            data = pd.read_sql_table("english_note_sentence", conn)
-        print(data)
+        
 
         new_sentence = Sentence(
             english_sentence = request.POST['english_sentence'],

@@ -1,8 +1,8 @@
-.list {
+.sentenc-list {
     overflow: scroll;
     width: 250px;
     height: 350px;
-    margin-left: 20px;
+    padding: 0px;
 }
 
 .sentenc {
@@ -10,6 +10,13 @@
     background-color: lightblue;
 }
 
-.list-title {
-    margin-left: 20px;
+.Classification-list {
+    background-color: lightgray;
+    width: 250px;
+    margin: 10px;
+    float: left;
+}
+
+.list {
+    background-color: mediumpurple;
 }
