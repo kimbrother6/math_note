@@ -13,24 +13,19 @@ def HomePageView(request):
 def newPage(request):
     if request.method == 'POST':
 
-
         book = request.POST['book']
         page = request.POST['page']
-        number = request.POST['number']
-        WR = request.POST['WR']
-        big_unit = choosing_big_unit(book, page)
-        middle_unit = choosing_middle_unit(book, page)
-        image = request.FILES['image']
-
+        big_unit = choosing_unit(book, page, 'big')
+        middle_unit = choosing_unit(book, page, 'middle')
 
         newPost = Post(
             book = book,
             page = page,
-            number = number,
-            WR = WR,
+            number = request.POST['number'],
+            WR = request.POST['WR'],
             big_unit = big_unit,
             middle_unit = middle_unit,
-            image = image,
+            image = request.FILES['image'],
         )
         newPost.save()
         return redirect('detail-page', id=newPost.id)
@@ -43,11 +38,17 @@ def detailPage(request, id):
 
     return render(request, 'math_note/detail.html', {'post': post})
 
-# class CreatePostView(CreateView): # new
-#     model = Post
-#     form_class = PostForm
-#     template_name = 'post.html'
-#     success_url = reverse_lazy('home')
+
+
+
+
+
+def choosing_unit(book, page, big_or_middle):
+    if book == '개념책' or book == '개념책/예제' or book == '실전책':
+        if big_or_middle == 'big':
+            return choosing_big_unit(book, page)
+        elif big_or_middle == 'middle':
+            return choosing_middle_unit(book, page)
 
 
 

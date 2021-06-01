@@ -8,6 +8,8 @@
 </h4>
 <p>{{post.WR|linebreaksbr}}</p>
 <img src="{{post.image.url}}"><br>
+{{post.dt_created}}<br>
+{{post.dt_modified}}<br>
 
 <a href={% url 'list-page' %}>목록으로 돌아가기</a>
 {% endblock content %}
