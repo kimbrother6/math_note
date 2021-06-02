@@ -1,14 +1,21 @@
 from .models import Post
 from .forms import PostForm
 from django.shortcuts import render, redirect
-from django.views.generic import ListView # new
-from django.urls import reverse_lazy # new
 from .forms import PostForm # new
-
+from datetime import date, timedelta
 
 def HomePageView(request):
-    model = Post.objects.all()
-    return render(request, 'math_note/home.html', {'model': model})
+    yesterday = date.today() - timedelta(days=1)
+    today_post = Post.objects.filter(dt_created=date.today())
+    yesterday_post = Post.objects.filter(dt_created=yesterday)
+
+    context = {
+        'todayPost': today_post,
+        'yesteerdayPost': yesterday_post,
+    }
+
+    return render(request, 'math_note/home.html', context=context)
+
 
 def newPage(request):
     if request.method == 'POST':
@@ -35,8 +42,20 @@ def newPage(request):
 
 def detailPage(request, id):
     post = Post.objects.get(id=id)
-
     return render(request, 'math_note/detail.html', {'post': post})
+
+
+
+
+
+    # today = date.today()
+    # print(today)
+    # yesterday = date.today() - timedelta(days=1)
+
+
+
+
+
 
 
 
@@ -49,11 +68,6 @@ def choosing_unit(book, page, big_or_middle):
             return choosing_big_unit(book, page)
         elif big_or_middle == 'middle':
             return choosing_middle_unit(book, page)
-
-
-
-
-
 def choosing_big_unit(book, page):
     page = int(page)
     if book == '개념책' or book == '개념책/예제':
@@ -74,12 +88,6 @@ def choosing_big_unit(book, page):
             return '중단원 실전 테스트'
         else:
             return '중단원 서술형 대비'
-
-
-
-
-
-
 def choosing_middle_unit(book, page):
     page = int(page)
     if book == '개념책' or book == '개념책/예제':

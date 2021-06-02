@@ -9,7 +9,17 @@
 
 
 <ul>
-  {% for post in model %}
+어제 쓴 오답노트
+  {% for post in yesterdayPost %}
+    <a href="{{post.id}}">
+        <div class='post'>
+            <p>{{ post.book }}</p>
+            <h3>{{post.WR}}</h3>
+        </div>
+    </a>
+  {% endfor %}<br>
+  오늘 쓴 오답노트
+  {% for post in todayPost %}
     <a href="{{post.id}}">
         <div class='post'>
             <p>{{ post.book }}</p>
