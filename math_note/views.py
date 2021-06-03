@@ -11,7 +11,7 @@ from pytz import timezone
 
 def HomePageView(request):
     today =  datetime.now(timezone('Asia/Seoul'))
-    yesterday = today - timedelta(days=1)
+    yesterday = today - timedelta(days=1)######################################
 
     model = Post.objects.all()
     todayPost = Post.objects.filter(dt_created = today)
