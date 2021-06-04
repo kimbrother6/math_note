@@ -11,7 +11,7 @@ from pytz import timezone
 
 def HomePageView(request):
     today =  datetime.now(timezone('Asia/Seoul'))
-    yesterday = today - timedelta(days=1)######################################
+    yesterday = today - timedelta(days=1)
 
     model = Post.objects.all()
     todayPost = Post.objects.filter(dt_created = today)
@@ -76,6 +76,8 @@ def choosing_big_unit(book, page):
             return '문자와 식'
         else:
             return '좌표평면과 그래프'
+    elif book == 'm포스(상)/좌표평면과 그래프':
+        return '좌표평면과 그래프'
     else:
         if page <= 39:
             return '소단원 실전 테스트'
@@ -103,6 +105,8 @@ def choosing_middle_unit(book, page):
                 return '문자의 사용과 식의 계산'
             else:
                 return '일차방정식'
+    elif book == 'm포스(상)/좌표평면과 그래프':
+            return '좌표평면과 그래프'
     else:
         if page < 4:
             return '설명'

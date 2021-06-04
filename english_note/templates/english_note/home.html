@@ -1,6 +1,29 @@
 {% extends './base.html'%}
-{% block content %}
-<a href='blind/'><div>영어문장 외우러 가기</div></a>
+{% load static%}
 
-<a href='new/'><div>영어문장 추가하러 가기</div></a>
+{% block content %}
+<link rel="stylesheet" href="{% static 'english_note/styles.css' %}">
+
+<div class='list-box'>
+    {% for Classification in Classification_list%}
+    <div class='Classification-list'>
+
+        <a href='sentenceCard/{{Classification}}/0'> <h3 class='list-title'>{{Classification}}</h3></a>
+        <div class='sentenc-list'>
+            {% for sentenc in sentenc %}
+                {% if sentenc.Classification == Classification%}
+
+                    <div class='sentenc'>
+                        <a href="/english_note/open/{{sentenc.id}}/">{{sentenc.korean_sentence}}</a>
+                        {{sentenc.Memorization}}<br>
+                    </div>
+
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<a href='new/' class='link'><div>영어문장 추가하러 가기</div></a>
 {% endblock content %}
